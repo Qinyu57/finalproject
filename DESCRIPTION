@@ -13,7 +13,7 @@ Suggests: knitr, testthat, rmarkdown, pkgdown
 License: Artistic-2.0
 VignetteBuilder: quarto
 Encoding: UTF-8
-URL: https://github.com/youreponame
-BugReports: https://github.com/youreponame/issues
+URL: https://github.com/Qinyu57/finalproject
+BugReports: https://github.com/Qinyu57/finalproject/issues
 Config/roxygen2/version: 8.1.1
 Roxygen: list(markdown=TRUE)
