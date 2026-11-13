@@ -2,6 +2,7 @@
 
 Instructions and template for projects for 2026 HSPH BST260
 
+Qinyu Xu
 Your project will be a working GitHub pages site that presents your interpretation
 of features of public health datasets.
 
