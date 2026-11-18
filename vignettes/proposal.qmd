@@ -24,15 +24,13 @@ vignette: >
 | **Exposure** | `water_type`, a categorical factor with "Community" as the reference. Levels: Community (680), Individual/Private (112), Non-community public systems (Transient and Non-Transient, 27), and Other (CDC "Other" 339, plus Commercially-Bottled and Bulk Water Purchase, 17). |
 | **Missing responses** | Within drinking-water outbreaks, `water_type` is almost complete (1 NA). Records coded "Unknown" (63) or with multiple types separated by ";" (17) are excluded from the primary analysis, giving **N = 1,175**. A sensitivity analysis keeps "Unknown" as its own level and assigns multi-type records to "Other". Records whose `state` cannot be mapped to a Census region (for example, multistate outbreaks or territories) are reported and excluded from region-adjusted models. |
 | **Outcome** | `illnesses`, the number of people ill (stored as text, converted to numeric). It is **continuous** (a right-skewed count), analyzed on the log scale or with negative binomial regression. |
-| **Confounders** | Chosen a priori: **calendar year** (surveillance and reporting changed over time), **month/season**, and **geography** (`state`, summarized as US Census region). `etiology` and `setting` are not adjusted for in the primary model because they may lie on the causal pathway, and `etiology` is missing for many records. They are added only in sensitivity analyses. |
 
 **Analysis steps**
 
 1.  Convert the raw list of text records (fields vary by record) into a tidy data frame with correct types, and create a `Date` variable from `year` and `month`.
 2.  Run descriptive statistics: outbreaks by water type, year and region, and the distribution of illnesses.
 3.  Visualize with time trends, boxplots of illnesses (log scale) by water type.
-4.  Fit a regression of illnesses on water type, adjusted for the confounders above.
-5.  Write reusable functions to summarize outbreaks for any water type, region or decade.
+4.  Fit a regression of illnesses on water type.
 
 ------------------------------------------------------------------------
 
@@ -47,14 +45,12 @@ vignette: >
 | **Exposure** | Census region (Northeast, Midwest, South, West), derived from `Location` with `state.name` and `state.region`. DC is assigned to South. It is a categorical factor with Northeast as the reference. |
 | **Missing responses** | `Death.Rate` and `Deaths.` have no missing values in the raw data. Any `Location` that cannot be matched to a region will be flagged and reported. |
 | **Outcome** | `Death.Rate`, the annual firearm death rate per 100,000 (likely age-adjusted, to be confirmed from the source documentation). It is **continuous**, analyzed on the log scale. |
-| **Confounders** | Chosen a priori: **calendar year**, entered as a categorical variable because the years are not consecutive. Age structure is handled by using the age-adjusted rate. The dataset has no population column, so a sensitivity analysis weights states by approximate population (`Deaths.` / `Death.Rate` × 100,000). Urbanicity, poverty and gun ownership matter but are not in the data and are discussed as unmeasured. Standard errors are clustered by state because of repeated measures. |
 
 **Analysis steps**
 
 1.  Document data provenance and compute descriptive statistics: rates by region and year.
-2.  Visualize with a choropleth map, time series by region, and boxplots of rates by region.
+2.  Visualize with boxplots of rates by region.
 3.  Fit a regression of log `Death.Rate` on region and year, with state-clustered standard errors.
 4.  Run sensitivity analyses: population weighting, and excluding 2005 (the only year before 2014).
-5.  Write reusable functions to summarize and plot rates for any region, state or period.
 
 ------------------------------------------------------------------------
