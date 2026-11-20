@@ -54,3 +54,4 @@ vignette: >
 4.  Run sensitivity analyses: population weighting, and excluding 2005 (the only year before 2014).
 
 ------------------------------------------------------------------------
+I used Claude to help me figure out the data structure for both datasets, as well as polishing the lauguages used in the proposal.
